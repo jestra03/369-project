@@ -35,7 +35,7 @@ This is stored within a `lab3` or `lab` directory in some setups, but the **actu
 Place your input text files into these folders:
 
 - `federalist_papers/` for known papers. Each file should have the author in the first line (e.g., HAMILTON, MADISON, JAY).
-- `federalist_papers_unknown/` randomly marked as unknown papers.
+- `federalist_papers_unknown/` for the papers whose authorship will be predicted.
 
 3. **Compile and run:**
 
