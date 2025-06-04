@@ -13,8 +13,8 @@ object TFIDFAuthorPredict {
     val conf = new SparkConf().setAppName("TFIDF Author Prediction").setMaster("local[*]")
     val sc = new SparkContext(conf)
 
-    val knownPath = "federalist_papers"
-    val unknownPath = "federalist_papers_unknown"
+    val knownPath = "control/federalist_papers_control_5"
+    val unknownPath = "control/federalist_papers_control_unknown_5"
 
     val knownDocsRaw = sc.wholeTextFiles(knownPath)
     val knownDocs = knownDocsRaw.map { case (path, content) =>
@@ -73,7 +73,7 @@ object TFIDFAuthorPredict {
 
     val topMatches = similarities.map { case ((uId, kId), sim) => (uId, (kId, sim)) }
       .groupByKey()
-      .mapValues(_.toList.sortBy(-_._2).take(10)) // Top 10 neighbors
+      .mapValues(_.toList.sortBy(-_._2).take(5))
       .cache()
 
     // New: Soft-labeling and co-authorship logic
